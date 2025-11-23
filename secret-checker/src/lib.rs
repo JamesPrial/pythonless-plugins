@@ -3,16 +3,16 @@ use std::path::PathBuf;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ToolInput {
-    file_path: PathBuf,
-    content: String,
+    file_path: Option<PathBuf>,
+    content: Option<String>,
 }
 
 impl ToolInput {
-    pub fn file_path(&self) -> &PathBuf {
+    pub fn file_path(&self) -> &Option<PathBuf> {
         &self.file_path
     }
 
-    pub fn content(&self) -> &String {
+    pub fn content(&self) -> &Option<String> {
         &self.content
     }
 }

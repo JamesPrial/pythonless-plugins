@@ -11,6 +11,8 @@ fn main() {
             std::process::exit(2);
         }
     };
-    println!("{:?}", input);
+
+    let command = input.tool_input().content();
+    //println!("{:?}", input);
     std::process::exit(0);
 }
