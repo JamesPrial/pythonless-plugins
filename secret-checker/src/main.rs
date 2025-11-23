@@ -12,7 +12,12 @@ fn main() {
         }
     };
 
+    if input.tool_name().to_lowercase() != "bash" {
+        dbg!("{:?}", input.tool_name());
+        std::process::exit(0);
+    }
+
     let command = input.tool_input().content();
-    //println!("{:?}", input);
+    dbg!("{:?}", command);
     std::process::exit(0);
 }
