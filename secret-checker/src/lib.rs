@@ -4,7 +4,7 @@ use std::path::PathBuf;
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ToolInput {
     file_path: PathBuf,
-    contents: String,
+    content: String,
 }
 
 impl ToolInput {
@@ -12,8 +12,8 @@ impl ToolInput {
         &self.file_path
     }
 
-    pub fn contents(&self) -> &String {
-        &self.contents
+    pub fn content(&self) -> &String {
+        &self.content
     }
 }
 
