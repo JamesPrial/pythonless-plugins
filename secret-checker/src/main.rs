@@ -1,4 +1,6 @@
 use std::io;
+use std::env;
+use std::path::PathBuf;
 
 use secret_checker::PreToolUseInput;
 
@@ -25,5 +27,14 @@ fn main() {
         }
     };
     dbg!("command={:?}", command);
+    if !command.contains("git commit") {
+        dbg!("command does not contain git commit");
+        std::process::exit(0);
+    }
+    let project_dir = env::var("CLAUDE_PROJECT_DIR")
+        .map(PathBuf::from)
+        .unwrap_or_else(|_| env::current_dir()
+        .expect("Failed to get current directory"));
+    dbg!("project_dir={:?}", project_dir);
     std::process::exit(0);
 }

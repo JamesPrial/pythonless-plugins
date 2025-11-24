@@ -7,7 +7,7 @@
     "tool_name": "Bash",
     "tool_input": {
       "file_path": "/path/to/file.txt",
-      "content": "file content"
+      "content": "git commit"
     },
     "tool_use_id": "toolu_01ABC123..."
 }
