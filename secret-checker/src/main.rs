@@ -1,6 +1,7 @@
 use std::io;
 use std::env;
 use std::path::PathBuf;
+use std::fs;
 
 use secret_checker::PreToolUseInput;
 
@@ -35,6 +36,22 @@ fn main() {
         .map(PathBuf::from)
         .unwrap_or_else(|_| env::current_dir()
         .expect("Failed to get current directory"));
-    dbg!("project_dir={:?}", project_dir);
+    dbg!("project_dir={:?}", project_dir.as_path());
+
+    let env_file_path = project_dir.as_path().join(".env");
+    dbg!("env_file_path={:?}", env_file_path.as_path());
+    if !env_file_path.as_path().exists() {
+        dbg!("env file does not exist");
+        std::process::exit(0);
+    }
+    let env_file_content = match fs::read_to_string(env_file_path.as_path()) {
+        Ok(content) => content,
+        Err(e) => {
+            dbg!("failed to read env file: error={:?}", e);
+            std::process::exit(0);
+        }
+    };
+    dbg!("env_file_content={:?}", env_file_content); // no, not great
+
     std::process::exit(0);
 }
