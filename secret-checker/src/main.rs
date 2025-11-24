@@ -13,11 +13,17 @@ fn main() {
     };
 
     if input.tool_name().to_lowercase() != "bash" {
-        dbg!("{:?}", input.tool_name());
+        dbg!("tool name not bash: tool_name={:?}", input.tool_name());
         std::process::exit(0);
     }
 
-    let command = input.tool_input().content();
-    dbg!("{:?}", command);
+    let command = match input.tool_input().content() {
+        Some(content) => content,
+        None => {
+            dbg!("no content: tool_input={:?}", input.tool_input());
+            std::process::exit(0);
+        }
+    };
+    dbg!("command={:?}", command);
     std::process::exit(0);
 }
